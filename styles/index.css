@@ -67,3 +67,8 @@ form h4 {
     color: white;
     background-color: #7B68EE;
   }
+#user-interaction-area {
+    position: relative;
+    top: 520px;
+
+}
