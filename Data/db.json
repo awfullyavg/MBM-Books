@@ -1,7 +1,7 @@
 {
    "books": [
     {
-        "id": "600",
+        "id": "0",
         "title": "No Longer Human",
         "author":"Osamu Dazai",
         "pages": "176",
@@ -12,7 +12,7 @@
         "series": false
     },
     {
-        "id": "601",
+        "id": "1",
         "title": "Between Two Fires",
         "author":"Christopher Buehlman",
         "pages": "436",
@@ -23,7 +23,7 @@
         "series": false
     } ,
     {
-        "id": "",
+        "id": "2",
         "title": "The Emperor of All Maladies",
         "author":"Siddhartha Mukherjee",
         "pages": "592",
@@ -34,7 +34,7 @@
         "series": false
     },
     {
-        "id": "",
+        "id": "3",
         "title": "The Hunger Games",
         "author":"Suzanne Collins",
         "pages": "386",
@@ -45,7 +45,7 @@
         "series": true
     },
     {
-        "id": "",
+        "id": "4",
         "title": "The Fault in Our Stars",
         "author":"John Green",
         "pages": "332",
@@ -56,7 +56,7 @@
         "series": false
     },
     {
-        "id": "",
+        "id": "5",
         "title": "Ready Player One",
         "author":"Ernest Cline",
         "pages": "386",
@@ -67,7 +67,7 @@
         "series": true
     },
     {
-        "id": "",
+        "id": "6",
         "title": "The Goldfinch",
         "author":"Donna Tartt",
         "pages": "780",
@@ -78,7 +78,7 @@
         "series": false
     },
     {
-        "id": "",
+        "id": "7",
         "title": "Holes",
         "author":"Louis Sachar",
         "pages": "251",
@@ -89,7 +89,7 @@
         "series": false
     },
     {
-        "id": "",
+        "id": "8",
         "title": "The Martian",
         "author":"Andy Weir",
         "pages": "482",
@@ -101,7 +101,7 @@
     },
 
     {
-        "id": "",
+        "id": "9",
         "title": "The Corrections",
         "author":"Jonathan Franzen",
         "pages": "577",
