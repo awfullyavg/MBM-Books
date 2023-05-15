@@ -14,8 +14,8 @@ function searchBooks(books){
     const searchBar = document.querySelector("#search-text") //grab the searchbar 
     //console.log(searchBar)
 
-    const searchResults = document.querySelector("#search-results") //grab the search result div
-    //console.log(searchResults)
+    const searchResults = document.querySelector("#search-results")
+    console.log(searchResults)
 
 }
 
