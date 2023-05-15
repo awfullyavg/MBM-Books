@@ -33,3 +33,17 @@ body {
         0 0 5px 1px #51CBEE;
 }
 /* -------------------------------------------------------------- */
+input[type="submit"] {
+    color: white;
+    border: 1px solid white;
+    background-color: #7B68EE;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+form h4 {
+    width: 100%;
+    padding: 0.25rem;
+    margin: 0.5rem 0;
+    color: white;
+    background-color: #7B68EE;
+  }
