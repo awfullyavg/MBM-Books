@@ -1,4 +1,4 @@
-/* This section is for the top elements of the webpage */
+/*----------------------- Start of Header -----------------------*/
 header {
     text-align: center;
 }
@@ -6,15 +6,16 @@ header {
 #website-subtitle {
     text-shadow: 2px 2px rgba(194, 194, 194, 0.589);
 }
-/* ---------------------------------------------------- */
+/*----------------------- End Header-----------------------*/
 
+/*---------------------------Start of Body -----------------------*/
 body {
     text-align: center;
     background-color: #00CA63  ;
-    
 }
+/*----------------------- End Body -----------------------*/
 
-/*This section gives the black round border to the search textbox*/
+/*----------------------- Start of Search Elements -----------------------*/
 .search-text {
     display: block;
     border: none;
@@ -32,7 +33,9 @@ body {
         0 0 4px rgba(0,0,0,0.1), 
         0 0 5px 1px #51CBEE;
 }
-/* -------------------------------------------------------------- */
+/*----------------------- End Search Elements -----------------------*/
+
+/*----------------------- Start of Form 1 -----------------------*/
 input[type="submit"] {
     color: white;
     border: 1px solid white;
@@ -72,6 +75,9 @@ form h4 {
     top: 520px;
 
 }
+/*--------------------------- End of Form 1 ----------------------------*/
+
+/*------------------------- Catalog Display Area -----------------------*/
 .catalog {
     width: 300px;
     height: 300px;
@@ -81,7 +87,9 @@ form h4 {
   margin: 20px;
 
 }
-/*----------------------- Book Bar CSS -----------------------*/
+/*----------------------- End Catalog Display Area -----------------------*/
+
+/*-------------------------- Start Book Bar CSS -----------------------*/
 .cover-img {
     object-fit: contain;
     width: 200px;
