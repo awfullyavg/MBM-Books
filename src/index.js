@@ -3,6 +3,9 @@
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 
+//Calls firstBookToCatalog when site loads
+firstBookToCatalog();
+
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
 .then((books) => searchBooks(books))
@@ -15,17 +18,22 @@ function searchBooks(books){
     console.log(searchResults)
 
 }
+
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
 })
+
 //Gets data of first book and passes info to catalog
-fetch("http://localhost:3000/books")
+function firstBookToCatalog() {
+  fetch("http://localhost:3000/books")
     .then(resp => resp.json())
     .then(data => {
-        data.forEach((book) => addBookToCatalog(book))
+        addBookToCatalog(data[0]);
     })
+  }
+
 //Displays book in the catalog
 function addBookToCatalog(book) {
     const newBook = document.createElement("span");
@@ -50,6 +58,7 @@ function addBookToCatalog(book) {
 
     catalog.appendChild(newBook);
 }
+
 //Adds donated book to db.json and book bar
 function donatedBook(event) {
     fetch("http://localhost:3000/books", {
