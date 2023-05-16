@@ -73,19 +73,17 @@ form h4 {
 
 }
 .catalog {
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
   border: 5px solid purple;
   background-color: lavender;
   padding: 50px;
   margin: 20px;
-  object-fit: fill;
 
 }
 
 .cover-img {
-    object-fit: fill;
-    width: 100px;
-    height: 100px;
-
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
 }
