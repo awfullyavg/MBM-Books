@@ -65,54 +65,6 @@
         "img_back": "https://m.media-amazon.com/images/I/91Myfyr2nAL._AC_UF1000,1000_QL80_.jpg",
         "genre": "Science fiction",
         "series": true
-    },
-    {
-        "id": "6",
-        "title": "The Goldfinch",
-        "author":"Donna Tartt",
-        "pages": "780",
-        "copies": "1",
-        "img_front": "https://m.media-amazon.com/images/I/81GcOE3jVsL._AC_UF1000,1000_QL80_.jpg",
-        "img_back": "https://m.media-amazon.com/images/I/91EvN2xAXjL._AC_UF1000,1000_QL80_.jpg",
-        "genre": "Thriller",
-        "series": false
-    },
-    {
-        "id": "7",
-        "title": "Holes",
-        "author":"Louis Sachar",
-        "pages": "251",
-        "copies": "1",
-        "img_front": "https://m.media-amazon.com/images/I/810r+QzOsnL._AC_UF1000,1000_QL80_.jpg",
-        "img_back": "https://2f96be1b505f7f7a63c3-837c961929b51c21ec10b9658b068d6c.ssl.cf2.rackcdn.com/products/010003b.jpg",
-        "genre": "Thriller",
-        "series": false
-    },
-    {
-        "id": "8",
-        "title": "The Martian",
-        "author":"Andy Weir",
-        "pages": "482",
-        "copies": "1",
-        "img_front": "https://m.media-amazon.com/images/I/81wFMY9OAFL._AC_UF1000,1000_QL80_.jpg",
-        "img_back": "https://m.media-amazon.com/images/I/91HG5-dZZvL.jpg",
-        "genre": "Science fiction",
-        "series": false
-    },
-
-    {
-        "id": "9",
-        "title": "The Corrections",
-        "author":"Jonathan Franzen",
-        "pages": "577",
-        "copies": "1",
-        "img_front": "https://d28hgpri8am2if.cloudfront.net/tagged_assets/cvr9781442341753/9781442341753_hr.jpg",
-        "img_back": "https://m.media-amazon.com/images/I/91UiRv9PB-L._AC_UF1000,1000_QL80_.jpg",
-        "genre": "Domestic Fiction",
-        "series": false
     }
-    
-
-
    ]
 }
