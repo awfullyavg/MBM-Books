@@ -1,8 +1,12 @@
 //Code here
+//Declares global variables
+const donationForm = document.querySelector("#new-donation");
+const catalog = document.querySelector(".catalog");
+
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
 .then((books) => searchBooks(books))
-
+//Takes in a search argument and returns books that match the search
 function searchBooks(books){
     const searchBar = document.querySelector("#search-text") //grab the searchbar 
     //console.log(searchBar)
@@ -11,20 +15,18 @@ function searchBooks(books){
     console.log(searchResults)
 
 }
-
-const donationForm = document.querySelector("#new-donation");
-const catalog = document.querySelector(".catalog");
-
+//Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
 })
+//Gets data of first book and passes info to catalog
 fetch("http://localhost:3000/books")
     .then(resp => resp.json())
     .then(data => {
         data.forEach((book) => addBookToCatalog(book))
     })
-
+//Displays book in the catalog
 function addBookToCatalog(book) {
     const newBook = document.createElement("span");
     book.className = "book";
@@ -48,7 +50,7 @@ function addBookToCatalog(book) {
 
     catalog.appendChild(newBook);
 }
-
+//Adds donated book to db.json and book bar
 function donatedBook(event) {
     fetch("http://localhost:3000/books", {
       method: "POST",
