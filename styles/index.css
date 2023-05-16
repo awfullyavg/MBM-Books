@@ -81,11 +81,17 @@ form h4 {
   margin: 20px;
 
 }
-
+/*----------------------- Book Bar CSS -----------------------*/
 .cover-img {
     object-fit: contain;
     width: 200px;
     height: 200px;
+}
+
+.bookbar-images {
+    object-fit: contain;
+    width: 100px;
+    height: 100px;
 }
 
 #book-bar {
@@ -97,3 +103,4 @@ form h4 {
   margin: auto;
   
 }
+/*----------------------- End Book Bar CSS -----------------------*/

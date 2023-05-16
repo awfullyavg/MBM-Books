@@ -91,7 +91,7 @@ function donatedBook(event) {
 fetch("http://localhost:3000/books")
       .then(resp => resp.json())
       .then(data => data.forEach(element => renderBookBar(element)))
-
+//Function to render books in the book-bar div
   function renderBookBar(data) {
     const span = document.createElement('span')
     const images = document.createElement('img')
