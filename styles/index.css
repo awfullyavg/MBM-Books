@@ -54,7 +54,8 @@ form h4 {
     margin: 1rem 0;
     width: 200px;
     display: block;
-    float: right;
+    float: left;
+    margin-top: 3rem;
 }
 input[type="submit"] {
     color: white;
@@ -83,8 +84,9 @@ form h4 {
     height: 300px;
   border: 5px solid purple;
   background-color: lavender;
-  padding: 50px;
-  margin: 20px;
+  padding: 100px;
+  margin: auto;
+  margin-top: 1rem;
 
 }
 /*----------------------- End Catalog Display Area -----------------------*/
@@ -98,17 +100,19 @@ form h4 {
 
 .bookbar-images {
     object-fit: contain;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
 }
 
 #book-bar {
     width: 700px;
-    height: 50px;
+    height: 100px;
   border: 5px solid purple;
   background-color: lavender;
   padding: 50px;
   margin: auto;
+  margin-top: 3rem ;
+  
   
 }
 /*----------------------- End Book Bar CSS -----------------------*/
