@@ -91,22 +91,12 @@ function donatedBook(event) {
 fetch("http://localhost:3000/books")
       .then(resp => resp.json())
       .then(data => data.forEach(element => renderBookBar(element)))
-     
-
-// function renderFirstFiveBooks () {
-//   fetch("http://localhost:3000/books")
-//       .then(resp => resp.json())
-//       .then(data=> data.map(i => {
-//         for (i=0; i < 1; i++){
-//           renderBookBar(i)
-//         }
-//       }));
-//   }
 
   function renderBookBar(data) {
     const span = document.createElement('span')
     const images = document.createElement('img')
     images.src = data.img_front
+    images.className = 'bookbar-images'
     span.appendChild(images)
     document.getElementById('book-bar').appendChild(span)
 
