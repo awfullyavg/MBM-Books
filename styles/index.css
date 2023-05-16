@@ -1,4 +1,4 @@
-/* This section is for the top elements of the webpage */
+/*----------------------- Start of Header -----------------------*/
 header {
     text-align: center;
 }
@@ -6,15 +6,16 @@ header {
 #website-subtitle {
     text-shadow: 2px 2px rgba(194, 194, 194, 0.589);
 }
-/* ---------------------------------------------------- */
+/*----------------------- End Header-----------------------*/
 
+/*---------------------------Start of Body -----------------------*/
 body {
     text-align: center;
     background-color: #00CA63  ;
-    
 }
+/*----------------------- End Body -----------------------*/
 
-/*This section gives the black round border to the search textbox*/
+/*----------------------- Start of Search Elements -----------------------*/
 .search-text {
     display: block;
     border: none;
@@ -32,7 +33,9 @@ body {
         0 0 4px rgba(0,0,0,0.1), 
         0 0 5px 1px #51CBEE;
 }
-/* -------------------------------------------------------------- */
+/*----------------------- End Search Elements -----------------------*/
+
+/*----------------------- Start of Form 1 -----------------------*/
 input[type="submit"] {
     color: white;
     border: 1px solid white;
@@ -51,7 +54,8 @@ form h4 {
     margin: 1rem 0;
     width: 200px;
     display: block;
-    float: right;
+    float: left;
+    margin-top: 3rem;
 }
 input[type="submit"] {
     color: white;
@@ -72,16 +76,22 @@ form h4 {
     top: 520px;
 
 }
+/*--------------------------- End of Form 1 ----------------------------*/
+
+/*------------------------- Catalog Display Area -----------------------*/
 .catalog {
     width: 300px;
     height: 300px;
   border: 5px solid purple;
   background-color: lavender;
-  padding: 50px;
-  margin: 20px;
+  padding: 100px;
+  margin: auto;
+  margin-top: 1rem;
 
 }
-/*----------------------- Book Bar CSS -----------------------*/
+/*----------------------- End Catalog Display Area -----------------------*/
+
+/*-------------------------- Start Book Bar CSS -----------------------*/
 .cover-img {
     object-fit: contain;
     width: 200px;
@@ -90,17 +100,19 @@ form h4 {
 
 .bookbar-images {
     object-fit: contain;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
 }
 
 #book-bar {
     width: 700px;
-    height: 50px;
+    height: 100px;
   border: 5px solid purple;
   background-color: lavender;
   padding: 50px;
   margin: auto;
+  margin-top: 3rem ;
+  
   
 }
 /*----------------------- End Book Bar CSS -----------------------*/
