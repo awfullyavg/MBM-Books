@@ -72,3 +72,20 @@ form h4 {
     top: 520px;
 
 }
+.catalog {
+    width: 100px;
+    height: 100px;
+  border: 5px solid purple;
+  background-color: lavender;
+  padding: 50px;
+  margin: 20px;
+  object-fit: fill;
+
+}
+
+.cover-img {
+    object-fit: fill;
+    width: 100px;
+    height: 100px;
+
+}

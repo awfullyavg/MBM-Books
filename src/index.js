@@ -50,6 +50,7 @@ function addBookToCatalog(book) {
     copies.textContent = `Copies Available: ${book.copies}`;
 
     const cover = document.createElement("img");
+    cover.className = 'cover-img'
     cover.src = book.img_front;
 
     newBook.appendChild(title);
@@ -85,7 +86,7 @@ function donatedBook(event) {
       })
   }
 
-  
+
 //Book Bar code
 fetch("http://localhost:3000/books")
       .then(resp => resp.json())
