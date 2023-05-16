@@ -115,4 +115,12 @@ function checkoutBook(book) {
     firstBookToCatalog();
     fetchBookBar();
 }
- 
+
+document.querySelector('#book-bar').addEventListener("mouseover", mouseOver)
+document.querySelector('#book-bar').addEventListener("mouseout", mouseOut)
+function mouseOver () {
+  document.getElementById('popup').style.display = 'block';
+}
+function mouseOut () {
+  document.getElementById('popup').style.display = 'none';
+}
