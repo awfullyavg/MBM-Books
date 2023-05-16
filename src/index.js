@@ -50,6 +50,7 @@ function addBookToCatalog(book) {
     copies.textContent = `Copies Available: ${book.copies}`;
 
     const cover = document.createElement("img");
+    cover.className = 'cover-img'
     cover.src = book.img_front;
 
     newBook.appendChild(title);
@@ -85,7 +86,19 @@ function donatedBook(event) {
       })
   }
 
-function renderBookBar () {
 
-  
-}
+//Book Bar code
+fetch("http://localhost:3000/books")
+      .then(resp => resp.json())
+      .then(data => data.forEach(element => renderBookBar(element)))
+//Function to render books in the book-bar div
+  function renderBookBar(data) {
+    const span = document.createElement('span')
+    const images = document.createElement('img')
+    images.src = data.img_front
+    images.className = 'bookbar-images'
+    span.appendChild(images)
+    document.getElementById('book-bar').appendChild(span)
+
+  }
+ 
