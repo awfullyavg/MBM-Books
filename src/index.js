@@ -3,6 +3,7 @@
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('book-bar')
+const checkoutButton = document.querySelector('#checkout-button')
 
 //Calls firstBookToCatalog when site loads
 firstBookToCatalog();
@@ -33,7 +34,7 @@ function firstBookToCatalog() {
     .then(data => {
         addBookToCatalog(data[0]);
     })
-  }
+}
 
 //Displays book in the catalog
 function addBookToCatalog(book) {
@@ -84,7 +85,7 @@ function donatedBook(event) {
       .then(data => {
         addBookToCatalog(data);
       })
-  }
+}
 
 
 //Book Bar code
@@ -93,13 +94,20 @@ fetch("http://localhost:3000/books")
       .then(data => data.forEach(element => renderBookBar(element)))
 
 //Function to render books in the book-bar div
-  function renderBookBar(data) {
+function renderBookBar(data) {
     const span = document.createElement('span')
     const images = document.createElement('img')
     images.src = data.img_front
     images.className = 'bookbar-images'
     span.appendChild(images)
     document.getElementById('book-bar').appendChild(span)
+}
 
-  }
+//Checkout button event listener
+checkoutButton.addEventListener("click", checkoutBook());
+
+//Function to checkout book
+function checkoutBook() {
+  
+}
  
