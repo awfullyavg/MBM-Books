@@ -1,11 +1,22 @@
 //Code here
-//Declares global variables
+//Globally scoped html elements
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('book-bar')
+const checkoutButton = document.querySelector('#checkoutNow-button')
 
-//Calls firstBookToCatalog when site loads
+//Globally scoped catalog html elements
+const catalogBook = document.createElement("span");
+const catalogCopies = document.createElement("p");
+catalogBook.appendChild(catalogCopies);
+const catalogCover = document.createElement("img");
+catalogCover.className = "cover-img";
+catalogBook.appendChild(catalogCover);
+catalog.appendChild(catalogBook);
+
+//Calls fetch functions
 firstBookToCatalog();
+fetchBookBar();
 
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
@@ -33,32 +44,14 @@ function firstBookToCatalog() {
     .then(data => {
         addBookToCatalog(data[0]);
     })
-  }
+}
 
 //Displays book in the catalog
 function addBookToCatalog(book) {
-    const newBook = document.createElement("span");
-    book.className = "book";
+    catalogCopies.textContent = `Copies Available: ${book.copies}`;
+    catalogCover.src = book.img_front;
 
-    const title = document.createElement("h3");
-    title.textContent = book.title;
-
-    const author = document.createElement("h4");
-    author.textContent = `By: ${book.author}`;
-    
-    const copies = document.createElement("p");
-    copies.textContent = `Copies Available: ${book.copies}`;
-
-    const cover = document.createElement("img");
-    cover.className = 'cover-img'
-    cover.src = book.img_front;
-
-    newBook.appendChild(title);
-    newBook.appendChild(author);
-    newBook.appendChild(copies);
-    newBook.appendChild(cover);
-
-    catalog.appendChild(newBook);
+    checkoutButton.addEventListener("click", (event) => checkoutButtonHandler(event, book));
 }
 
 //Adds donated book to db.json and book bar
@@ -82,23 +75,44 @@ function donatedBook(event) {
     })
       .then(resp => resp.json())
       .then(data => {
-        addBookToCatalog(data);
+        renderBookBar(data);
       })
-  }
+}
 
 
 //Book Bar code
-fetch("http://localhost:3000/books")
+function fetchBookBar() {
+  fetch("http://localhost:3000/books")
       .then(resp => resp.json())
       .then(data => data.forEach(element => renderBookBar(element)))
+}
+
 //Function to render books in the book-bar div
-  function renderBookBar(data) {
+function renderBookBar(data) {
     const span = document.createElement('span')
     const images = document.createElement('img')
     images.src = data.img_front
     images.className = 'bookbar-images'
     span.appendChild(images)
     document.getElementById('book-bar').appendChild(span)
+}
 
-  }
+//Function to handle checkout button
+function checkoutButtonHandler(event, book) {
+    console.log(book);
+}
+
+//Function to checkout book
+function checkoutBook(book) {
+    const id = book.id;
+    fetch(`http://localhost:3000/books/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+    firstBookToCatalog();
+    fetchBookBar();
+}
  

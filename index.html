@@ -25,6 +25,8 @@
         <div class="donation-field">
           <form id="new-donation">
             <h4>Please Fill Out Donation Form Below</h4>
+            <label for="name">Your Name: </label>
+            <input type="text" name="name" id="new-name">
             <label for="title">Title: </label>
             <input type="text" name="title" id="new-title" />
             <label for="author">Author: </label>
@@ -44,9 +46,18 @@
             <input type="submit" value="Donate" />
           </form>
         </div>
+        <!--Checkout Field-->
+        <div class="checkout-field">
+          <form id="new-checkout">
+            <h4>Please Fill Out Checkout Form Below</h4>
+            <label for="name">Full Name: </label>
+            <input type="text" name="name" id="full-name">
+            <input type="submit" value="Checkout">
+          </form>
+        </div>
         <!--Library-->
         <div class="catalog">
-            
+            <button id="checkoutNow-button">Checkout</button>
         </div>
 
 
