@@ -90,11 +90,8 @@ function donatedBook(event) {
 //Book Bar code
 fetch("http://localhost:3000/books")
       .then(resp => resp.json())
-      .then(data=> data.map(i => {
-        for (i=0; i < 1; i++){
-          renderBookBar(i)
-        }
-      }));
+      .then(data => data.forEach(element => renderBookBar(element)))
+     
 
 // function renderFirstFiveBooks () {
 //   fetch("http://localhost:3000/books")
