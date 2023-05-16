@@ -2,6 +2,7 @@
 //Declares global variables
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
+const bookBar = document.querySelector('book-bar')
 
 //Calls firstBookToCatalog when site loads
 firstBookToCatalog();
@@ -84,3 +85,7 @@ function donatedBook(event) {
       })
   }
 
+function renderBookBar () {
+
+  
+}
