@@ -38,7 +38,7 @@ function firstBookToCatalog() {
 //Displays book in the catalog
 function addBookToCatalog(book) {
     const newBook = document.createElement("span");
-    book.className = "book";
+    book.className = "catalog-book";
 
     const title = document.createElement("h3");
     title.textContent = book.title;
@@ -91,6 +91,7 @@ function donatedBook(event) {
 fetch("http://localhost:3000/books")
       .then(resp => resp.json())
       .then(data => data.forEach(element => renderBookBar(element)))
+
 //Function to render books in the book-bar div
   function renderBookBar(data) {
     const span = document.createElement('span')
