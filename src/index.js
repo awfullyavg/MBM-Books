@@ -51,7 +51,7 @@ function addBookToCatalog(book) {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
 
-    checkoutButton.addEventListener("click", checkoutBook(book));
+    checkoutButton.addEventListener("click", (event) => checkoutButtonHandler(event, book));
 }
 
 //Adds donated book to db.json and book bar
@@ -97,8 +97,22 @@ function renderBookBar(data) {
     document.getElementById('book-bar').appendChild(span)
 }
 
+//Function to handle checkout button
+function checkoutButtonHandler(event, book) {
+    console.log(book);
+}
+
 //Function to checkout book
 function checkoutBook(book) {
-
+    const id = book.id;
+    fetch(`http://localhost:3000/books/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      }
+    })
+    firstBookToCatalog();
+    fetchBookBar();
 }
  
