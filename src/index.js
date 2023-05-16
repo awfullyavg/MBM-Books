@@ -1,9 +1,17 @@
 //Code here
-//Declares global variables
+//Globally scoped html elements
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('book-bar')
 const checkoutButton = document.querySelector('#checkout-button')
+
+//Globally scoped catalog html elements
+const catalogBook = document.createElement("span");
+const catalogCopies = document.createElement("p");
+catalogBook.appendChild(catalogCopies);
+const catalogCover = document.createElement("img");
+catalogBook.appendChild(catalogCover);
+catalog.appendChild(catalogBook);
 
 //Calls firstBookToCatalog when site loads
 firstBookToCatalog();
@@ -38,28 +46,10 @@ function firstBookToCatalog() {
 
 //Displays book in the catalog
 function addBookToCatalog(book) {
-    const newBook = document.createElement("span");
-    book.className = "catalog-book";
+    catalogCopies.textContent = book.copies;
+    catalogCover.src = book.img_front;
 
-    const title = document.createElement("h3");
-    title.textContent = book.title;
-
-    const author = document.createElement("h4");
-    author.textContent = `By: ${book.author}`;
-    
-    const copies = document.createElement("p");
-    copies.textContent = `Copies Available: ${book.copies}`;
-
-    const cover = document.createElement("img");
-    cover.className = 'cover-img'
-    cover.src = book.img_front;
-
-    newBook.appendChild(title);
-    newBook.appendChild(author);
-    newBook.appendChild(copies);
-    newBook.appendChild(cover);
-
-    catalog.appendChild(newBook);
+    checkoutButton.addEventListener("click", checkoutBook(book));
 }
 
 //Adds donated book to db.json and book bar
@@ -83,7 +73,7 @@ function donatedBook(event) {
     })
       .then(resp => resp.json())
       .then(data => {
-        addBookToCatalog(data);
+        renderBookBar(data);
       })
 }
 
@@ -108,6 +98,6 @@ checkoutButton.addEventListener("click", checkoutBook());
 
 //Function to checkout book
 function checkoutBook() {
-  
+
 }
  
