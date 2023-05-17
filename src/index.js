@@ -107,7 +107,7 @@ function checkoutButtonHandler(event, book) {
     checkoutForm.addEventListener('submit', (e) => { 
     e.preventDefault();
     const checkoutName = e.target.name.value;
-    thankyouMessage.textContent = `Thank you for checking out a book ${checkoutName}`;
+    thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
     checkoutBook(book);
     })
     console.log(book);
@@ -115,7 +115,23 @@ function checkoutButtonHandler(event, book) {
 
 //Function to checkout book
 function checkoutBook(book) {
-    const id = book.id;
+  const id = book.id;
+    if (parseInt(book.copies) > 1) {
+      fetch(`http://localhost:3000/books/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        "copies": parseInt(book.copies) - 1
+      })
+    })
+        .then(resp => resp.json())
+        .then(data => {
+          catalogCopies.textContent = `Copies Available: ${parseInt(book.copies) - 1}`
+        })
+    } else {
     fetch(`http://localhost:3000/books/${id}`, {
       method: 'DELETE',
       headers: {
@@ -123,8 +139,12 @@ function checkoutBook(book) {
         Accept: "application/json"
       }
     })
-    bookBar.innerHTML = "";
-    firstBookToCatalog();
-    fetchBookBar();
+      .then(resp => resp.json())
+      .then(data => {
+        firstBookToCatalog();
+        bookBar.innerHTML = "";
+        fetchBookBar();
+      })
+    } 
 }
  
