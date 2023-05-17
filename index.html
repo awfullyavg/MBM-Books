@@ -22,7 +22,7 @@
             </form>
         </div>
         <!--Donation Field-->
-        <div class="donation-field">
+        <div class="donation-field" style ='position: absolute; left:300px; top:170px;'>
           <form id="new-donation">
             <h4>Please Fill Out Donation Form Below</h4>
             <label for="name">Your Name: </label>
@@ -46,6 +46,7 @@
             <input type="submit" value="Donate" />
           </form>
         </div>
+        
         <!--Checkout Field-->
         <div class="checkout-field">
           <form id="new-checkout">
@@ -60,15 +61,28 @@
         <div class="catalog">
             <button id="checkoutNow-button">Checkout Now</button>
         </div>
-
-
+        <!---Donor Board-->
+        <nav class='donor-board' style ='position: absolute; left:1400px; top:220px;'>
+          <div class="donor-list">
+            <h4 style="background-color: lavender;">⭐ Randy Marsh </h4>
+            <ul id="popup-randy" style="display: none; background-color: white;">This donor has donated 7 books</ul>
+            <img class="donors" id="randy" src= 'https://www.postavy.cz/foto/randy-marsh-foto.jpg' alt="Randy Marsh" wdith="100px" height="100px">
+            <h4 style="background-color: lavender;">⭐ Ted Lasso </h4>
+            <ul id="popup-ted" style="display: none; background-color: white;">This donor has donated 5 books</ul>
+            <img class="donors" id="ted" src= 'https://pbs.twimg.com/profile_images/1424853927279927296/gu2WvJOu_400x400.jpg' alt="Ted Lasso" wdith="100px" height="100px">
+            <h4 style="background-color: lavender;">⭐ McLovin </h4>
+            <ul id="popup-mclovin" style="display: none; background-color: white;">This donor has donated 2 books</ul>
+            <img class="donors" id="mclovin" src= 'https://i.pinimg.com/originals/30/8d/79/308d795c3cac0f8f16610f53df4e1005.jpg' alt="Randy" wdith="100px" height="100px">
+          </div>
+        </nav>
         <div id="book-bar">
-
+          <ul id="popup" style="display: none">you mousedover!</ul>
         </div>
 
         <div id = "search-results">
           <h5> "Hello World"</h5>
         </div>
+        
 
 	<script src="./src/index.js" defer></script>
   </body>
