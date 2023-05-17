@@ -20,6 +20,8 @@ catalog.appendChild(catalogBook);
 firstBookToCatalog();
 fetchBookBar();
 
+
+
 searchBar.addEventListener("submit", (e) => {
   e.preventDefault() 
   searchBooks(e)
@@ -32,35 +34,44 @@ function searchBooks(e){
 //Step 1: create a FETCH to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
-.then((books) => books.forEach(book =>{
+.then((books) => {
+  let searchInquiry = e.target["search-text"].value.toLowerCase()
+  console.log(searchInquiry)
 
-//Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
-    const searchResults = document.querySelector("#search-results")
-//console.log(searchResults)
+  let filteredBooks = books.filter()
 
-//Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
-    const titleLines = document.createElement("ul")
-    const authorLines = document.createElement("ul")
-//console.log(titleLines)
-//console.log(authorLines)
 
-//Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
-    titleLines.textContent = book.title
-    authorLines.textContent = book.author
+  filteredBooks.forEach( book => {
 
-//Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
-    searchResults.appendChild(titleLines)
-    searchResults.appendChild(authorLines)
+    //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
+        const searchResults = document.querySelector("#search-results")
+    //console.log(searchResults)
+    
+    //Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
+        const titleLines = document.createElement("ul")
+        const authorLines = document.createElement("ul")
+    //console.log(titleLines)
+    //console.log(authorLines)
+    
+    //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
+        titleLines.textContent = book.title
+        authorLines.textContent = book.author
+    
+    //Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
+        searchResults.appendChild(titleLines)
+        searchResults.appendChild(authorLines)
+    
+    //Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the search , listening for a click, after the click I preventDefault() passing an event to the addEventListener function
+    
+                    /* <form id="search-input-form">
+                    <input type="text" id="search-text" name="search-text" placeholder="Search Books...">
+                    <button id="search-button">Search</button>
+                    </form> */
+    
+    //Step 6: The logic I think I'll try this time is having the UL list items populated but hidden. Then if the user clicks it'll undhide the property if it matches the a variable?
+    })
 
-//Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the search , listening for a click, after the click I preventDefault() passing an event to the addEventListener function
-
-                /* <form id="search-input-form">
-                <input type="text" id="search-text" name="search-text" placeholder="Search Books...">
-                <button id="search-button">Search</button>
-                </form> */
-
-//Step 6: The logic I think I'll try this time is having the UL list items populated but hidden. Then if the user clicks it'll undhide the property if it matches the a variable?
-}))}
+})}
 
 
 //Submit event listener for donation form
