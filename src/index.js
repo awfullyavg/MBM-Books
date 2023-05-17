@@ -17,19 +17,32 @@ catalog.appendChild(catalogBook);
 //Calls fetch functions
 firstBookToCatalog();
 fetchBookBar();
-
+//SEARCH FUNCTION
+//Step 1: create a fetch to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
-.then((books) => searchBooks(books))
-//Takes in a search argument and returns books that match the search
-function searchBooks(books){
+.then((books) => books.forEach(book =>searchBooks(book)))
+//searchBooks FUNCTION
+function searchBooks(book){
+  console.log(book)
     const searchBar = document.querySelector("#search-text") //grab the searchbar 
     //console.log(searchBar)
-
     const searchResults = document.querySelector("#search-results")
-    console.log(searchResults)
+    //console.log(searchResults)
+
 
 }
+//Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
+//Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
+//Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
+//Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the button, listening for a click, after the click I preventDefault() passing an event to the addEventListener function
+//Step 6: The logic I think I'll try this time is having the UL list items populated but hidden. Then if the user clicks it'll undhide the property if it matches the a variable?
+
+
+
+/* <div id = "search-results">
+<h5> "Hello World"</h5>
+</div> */
 
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
@@ -115,4 +128,3 @@ function checkoutBook(book) {
     firstBookToCatalog();
     fetchBookBar();
 }
- 
