@@ -21,12 +21,14 @@ firstBookToCatalog();
 fetchBookBar();
 
 
+ 
+
+//Step 5: We changed the html form to have a submit function instead of a button, this way I can call addEventListener to the "searchBar", pass in event, prevent default, and pass the event to my searchBooks function. (that same search books function holds the fetch and the data).
 
 searchBar.addEventListener("submit", (e) => {
   e.preventDefault() 
   searchBooks(e)
 })
-
 
 //SEARCH FUNCTION
 //Takes in our book paramater HOPEFULLY returns books that match the search
@@ -35,13 +37,32 @@ function searchBooks(e){
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
 .then((books) => {
-  let searchInquiry = e.target["search-text"].value.toLowerCase()
+
+let searchInquiry = e.target["search-text"].value.toLowerCase()
+  
   console.log(searchInquiry)
 
-  let filteredBooks = books.filter()
+  //Step 6: The logic I'm trying to implement takes the searchInquiry value and lowercases it, we then compare it to the filtered books, testing to see if they ==, then return the respective title or author
 
+  let filteredBooks = books.filter((books) => {
+    
+//should I do a for loop and test for each index in the filtered array? To go back to what I previously had, just remove the for loop, and the [i]. 
+    for (let i = 0; i < books.length; i++)
+{
+    if (searchInquiry == books[i].title.toLowerCase())
+    {
+      return books[i].title
+    } else if (searchInquiry == books[i].author.toLowerCase())
+    {
+      return books[i].author
+    } else 
+    {
+      return "Book not found!"
+    }
+}
+  })
 
-  filteredBooks.forEach( book => {
+  filteredBooks.forEach(books => {
 
     //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
         const searchResults = document.querySelector("#search-results")
@@ -54,21 +75,13 @@ fetch("http://localhost:3000/books")
     //console.log(authorLines)
     
     //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
-        titleLines.textContent = book.title
-        authorLines.textContent = book.author
+        titleLines.textContent = books.title
+        authorLines.textContent = books.author
     
     //Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
         searchResults.appendChild(titleLines)
         searchResults.appendChild(authorLines)
-    
-    //Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the search , listening for a click, after the click I preventDefault() passing an event to the addEventListener function
-    
-                    /* <form id="search-input-form">
-                    <input type="text" id="search-text" name="search-text" placeholder="Search Books...">
-                    <button id="search-button">Search</button>
-                    </form> */
-    
-    //Step 6: The logic I think I'll try this time is having the UL list items populated but hidden. Then if the user clicks it'll undhide the property if it matches the a variable?
+
     })
 
 })}
