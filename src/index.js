@@ -116,11 +116,32 @@ function checkoutBook(book) {
     fetchBookBar();
 }
 
-document.querySelector('#book-bar').addEventListener("mouseover", mouseOver)
-document.querySelector('#book-bar').addEventListener("mouseout", mouseOut)
-function mouseOver () {
-  document.getElementById('popup').style.display = 'block';
+document.querySelector('#randy').addEventListener("mouseover", mouseOverRandy)
+document.querySelector('#randy').addEventListener("mouseout", mouseOutRandy)
+
+function mouseOverRandy () {
+  document.getElementById('popup-randy').style.display = 'block';
 }
-function mouseOut () {
-  document.getElementById('popup').style.display = 'none';
+function mouseOutRandy () {
+  document.getElementById('popup-randy').style.display = 'none';
+}
+
+document.querySelector('#ted').addEventListener("mouseover", mouseOverTed)
+document.querySelector('#ted').addEventListener("mouseout", mouseOutTed)
+
+function mouseOverTed () {
+  document.getElementById('popup-ted').style.display = 'block';
+}
+function mouseOutTed () {
+  document.getElementById('popup-ted').style.display = 'none';
+}
+
+document.querySelector('#mclovin').addEventListener("mouseover", mouseOverMclovin)
+document.querySelector('#mclovin').addEventListener("mouseout", mouseOutMclovin)
+
+function mouseOverMclovin () {
+  document.getElementById('popup-mclovin').style.display = 'block';
+}
+function mouseOutMclovin () {
+  document.getElementById('popup-mclovin').style.display = 'none';
 }
