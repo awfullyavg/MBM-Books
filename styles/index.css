@@ -42,12 +42,14 @@ body {
 
 /*----------------------- Start of Form 1 -----------------------*/
 .donation-field{
-    width: relative;
-    height: relative;
+    /* width: relative;
+    height: relative; */
   border: 5px solid purple;
   background-color: lavender;
-  padding: 50px;
+  flex: 1;
   margin: auto;
+  /* padding: 50px;
+  margin: auto; */
 }
 
 input[type="submit"] {
