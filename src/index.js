@@ -44,23 +44,10 @@ let searchInquiry = e.target["search-text"].value.toLowerCase()
 
   //Step 6: The logic I'm trying to implement takes the searchInquiry value and lowercases it, we then compare it to the filtered books, testing to see if they ==, then return the respective title or author
 
-  let filteredBooks = books.filter((books) => {
-    
-//should I do a for loop and test for each index in the filtered array? To go back to what I previously had, just remove the for loop, and the [i]. 
-    for (let i = 0; i < books.length; i++)
-{
-    if (searchInquiry == books[i].title.toLowerCase())
-    {
-      return books[i].title
-    } else if (searchInquiry == books[i].author.toLowerCase())
-    {
-      return books[i].author
-    } else 
-    {
-      return "Book not found!"
-    }
-}
-  })
+  let filteredBooks = books.filter((books) => {searchInquiry == books.title.toLowerCase() || searchInquiry == books.author.toLowerCase()})
+
+  console.log(filteredBooks)
+  
 
   filteredBooks.forEach(books => {
 
