@@ -21,20 +21,36 @@ fetchBookBar();
 //Step 1: create a fetch to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
-.then((books) => books.forEach(book =>searchBooks(book)))
+.then((books) => books.forEach(book =>searchBooks(book))) //instead of just passing the entire object, wrote forEach inside.
 //searchBooks FUNCTION
 function searchBooks(book){
-  console.log(book)
+      //console.log(book)  //Make sure I grabbed all the books.
+  const searchBar = document.querySelector("#search-text") //grab the searchbar, THIS WILL BE USED LATER ? or the button itself will be used later
+      //console.log(searchBar)
+
+  //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
+  const searchResults = document.querySelector("#search-results")
+      //console.log(searchResults)
+.then((books) => searchBooks(books))
+//Takes in a search argument and returns books that match the search
+function searchBooks(books){
     const searchBar = document.querySelector("#search-text") //grab the searchbar 
     //console.log(searchBar)
     const searchResults = document.querySelector("#search-results")
     //console.log(searchResults)
 
 
+  //Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
+  const titleLines = document.createElement("ul")
+  const authorLines = document.createElement("ul")
+
+  //console.log(titleLines)
+  //console.log(authorLines)
+  
+  //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
+
+
 }
-//Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
-//Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
-//Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
 //Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the button, listening for a click, after the click I preventDefault() passing an event to the addEventListener function
 //Step 6: The logic I think I'll try this time is having the UL list items populated but hidden. Then if the user clicks it'll undhide the property if it matches the a variable?
 
@@ -127,4 +143,5 @@ function checkoutBook(book) {
     })
     firstBookToCatalog();
     fetchBookBar();
+}
 }
