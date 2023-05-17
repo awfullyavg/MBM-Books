@@ -116,8 +116,8 @@ function checkoutBook(book) {
     fetchBookBar();
 }
 
-document.querySelector('.bookbar-images').addEventListener("mouseover", mouseOver)
-document.querySelector('.bookbar-images').addEventListener("mouseout", mouseOut)
+document.querySelector('#book-bar').addEventListener("mouseover", mouseOver)
+document.querySelector('#book-bar').addEventListener("mouseout", mouseOut)
 function mouseOver () {
   document.getElementById('popup').style.display = 'block';
 }
