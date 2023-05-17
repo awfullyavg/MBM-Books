@@ -2,8 +2,10 @@
 //Globally scoped html elements
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
-const bookBar = document.querySelector('book-bar')
-const checkoutButton = document.querySelector('#checkoutNow-button')
+const bookBar = document.querySelector('#book-bar')
+const checkoutNowButton = document.querySelector('#checkoutNow-button')
+const thankyouMessage = document.querySelector('#thankyou')
+const checkoutForm = document.querySelector('#new-checkout');
 
 //Globally scoped catalog html elements
 const catalogBook = document.createElement("span");
@@ -51,7 +53,10 @@ function addBookToCatalog(book) {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
 
-    checkoutButton.addEventListener("click", (event) => checkoutButtonHandler(event, book));
+    checkoutNowButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      checkoutButtonHandler(event, book)
+    });
 }
 
 //Adds donated book to db.json and book bar
@@ -99,6 +104,12 @@ function renderBookBar(data) {
 
 //Function to handle checkout button
 function checkoutButtonHandler(event, book) {
+    checkoutForm.addEventListener('submit', (e) => { 
+    e.preventDefault();
+    const checkoutName = e.target.name.value;
+    thankyouMessage.textContent = `Thank you for checking out a book ${checkoutName}`;
+    checkoutBook(book);
+    })
     console.log(book);
 }
 
@@ -112,6 +123,7 @@ function checkoutBook(book) {
         Accept: "application/json"
       }
     })
+    bookBar.innerHTML = "";
     firstBookToCatalog();
     fetchBookBar();
 }
