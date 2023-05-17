@@ -42,34 +42,39 @@ let searchInquiry = e.target["search-text"].value.toLowerCase()
   
   console.log(searchInquiry)
 
-  //Step 6: The logic I'm trying to implement takes the searchInquiry value and lowercases it, we then compare it to the filtered books, testing to see if they ==, then return the respective title or author
+  //Step 6: The logic is taking a book, filtering and seeing if it matches.
 
-  let filteredBooks = books.filter((books) => {searchInquiry == books.title.toLowerCase() || searchInquiry == books.author.toLowerCase()})
+  let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
 
   console.log(filteredBooks)
   
 
-  filteredBooks.forEach(books => {
+  filteredBooks.forEach(book => {
 
     //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
+
         const searchResults = document.querySelector("#search-results")
     //console.log(searchResults)
     
     //Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
+
         const titleLines = document.createElement("ul")
         const authorLines = document.createElement("ul")
     //console.log(titleLines)
     //console.log(authorLines)
     
     //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
-        titleLines.textContent = books.title
-        authorLines.textContent = books.author
+
+        titleLines.textContent = book.title
+        authorLines.textContent = book.author
     
     //Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
+
         searchResults.appendChild(titleLines)
         searchResults.appendChild(authorLines)
 
     })
+    searchBar.reset()
 
 })}
 
