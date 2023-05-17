@@ -110,7 +110,6 @@ function checkoutButtonHandler(event, book) {
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
     checkoutBook(book);
     })
-    console.log(book);
 }
 
 //Function to checkout book
@@ -124,7 +123,7 @@ function checkoutBook(book) {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        "copies": parseInt(book.copies) - 1
+        "copies": `${parseInt(book.copies) - 1}`
       })
     })
         .then(resp => resp.json())
@@ -147,4 +146,3 @@ function checkoutBook(book) {
       })
     } 
 }
- 
