@@ -49,6 +49,8 @@ function searchBooks(books){
   
   //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
 
+  titleLines.textContent = books.title
+
 
 }
 //Step 5: So this is where it gets complicated. Previously I had used an addEventListener to the button, listening for a click, after the click I preventDefault() passing an event to the addEventListener function
