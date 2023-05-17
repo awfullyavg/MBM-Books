@@ -5,6 +5,20 @@ const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('book-bar')
 const checkoutButton = document.querySelector('#checkoutNow-button')
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
+const titleLines = document.createElement("ul")
+const authorLines = document.createElement("ul")
+
+ //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
+
+ const searchResults = document.querySelector("#search-results")
+ //console.log(searchResults)
+
+//Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
+  
+searchResults.appendChild(titleLines)
+searchResults.appendChild(authorLines)
+
+
 
 
 //Globally scoped catalog html elements
@@ -39,41 +53,26 @@ fetch("http://localhost:3000/books")
 .then((books) => {
 
 let searchInquiry = e.target["search-text"].value.toLowerCase()
-  
-  console.log(searchInquiry)
+
+console.log(searchInquiry)
+
 
   //Step 6: The logic is taking a book, filtering and seeing if it matches.
 
   let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
 
-  console.log(filteredBooks)
+  if (filteredBooks.length === 0){
+    alert("Sorry, but we currently do not have this book available.")
+  } else {
+
+    filteredBooks.forEach(book => {
+      //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
   
-
-  filteredBooks.forEach(book => {
-
-    //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
-
-        const searchResults = document.querySelector("#search-results")
-    //console.log(searchResults)
+          titleLines.textContent = book.title
+          authorLines.textContent = book.author
+      })
     
-    //Step 3: To add the title and authors, we first have to either make a <ul> element in HTML or use document.createElement to make them in JS., because there's no need to number them.
-
-        const titleLines = document.createElement("ul")
-        const authorLines = document.createElement("ul")
-    //console.log(titleLines)
-    //console.log(authorLines)
-    
-    //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
-
-        titleLines.textContent = book.title
-        authorLines.textContent = book.author
-    
-    //Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
-
-        searchResults.appendChild(titleLines)
-        searchResults.appendChild(authorLines)
-
-    })
+  }
     searchBar.reset()
 
 })}
