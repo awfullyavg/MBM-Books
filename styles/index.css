@@ -12,6 +12,7 @@ header {
 body {
     text-align: center;
     background-color: #00CA63  ;
+    background-image: url(https://st.depositphotos.com/1010629/2287/i/600/depositphotos_22877136-stock-photo-green-velvet-pool-table-texture.jpg);
 }
 /*----------------------- End Body -----------------------*/
 
@@ -35,7 +36,20 @@ body {
 }
 /*----------------------- End Search Elements -----------------------*/
 
+.checkout-field{
+    position: relative;
+}
+
 /*----------------------- Start of Form 1 -----------------------*/
+.donation-field{
+    width: relative;
+    height: relative;
+  border: 5px solid purple;
+  background-color: lavender;
+  padding: 50px;
+  margin: auto;
+}
+
 input[type="submit"] {
     color: white;
     border: 1px solid white;
