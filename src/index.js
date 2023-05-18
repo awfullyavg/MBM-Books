@@ -39,7 +39,7 @@ fetch("http://localhost:3000/books")
   .then((books) => {
     let searchInquiry = e.target["search-text"].value.toLowerCase()
 
-    console.log(searchInquiry)
+    // console.log(searchInquiry)
 //The logic is taking a book, filtering and seeing if it matches.
     let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
     if (filteredBooks.length === 0){
@@ -70,9 +70,14 @@ function firstBookToCatalog() {
 
 //Displays book in the catalog
 function addBookToCatalog(book) {
+  if (bookBar.innerHTML === '') {
+    catalogCopies.textContent = "No books remaining in catalog"
+    catalogCover.src = "https://t3.ftcdn.net/jpg/00/49/82/62/360_F_49826222_9f2rGQlghv0jOYhAN7CCW73OxFu53Q62.jpg"
+  } else {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
     currentCataloggedBook = book;
+  }
 }
 
 //Adds donated book to db.json and book bar
@@ -86,12 +91,8 @@ function donatedBook(event) {
       body: JSON.stringify({
         "title": event.target.title.value,
         "author": event.target.author.value,
-        "pages": event.target.pages.value,
         "copies": event.target.copies.value,
         "img_front": event.target.frontImage.value,
-        "img_back": event.taget.backImage.value,
-        "genre": event.target.genre.value,
-        "series": event.target.series.value,
       })
     })
       .then(resp => resp.json())
@@ -117,7 +118,7 @@ function renderBookBar(data) {
     document.getElementById('book-bar').appendChild(span)
     
     images.addEventListener('click', function(){
-      console.log(images)
+      // console.log(images)
       catalogCover.src = images.src
       catalogCopies.textContent = `Copies Available: ${data.copies}`
       currentCataloggedBook = data;
@@ -129,13 +130,18 @@ checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const checkoutName = e.target.name.value;
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
+    if (bookBar.innerHTML === '') {
+      catalogCopies.textContent = "No books remaining in catalog"
+      catalogCover.src = "https://t3.ftcdn.net/jpg/00/49/82/62/360_F_49826222_9f2rGQlghv0jOYhAN7CCW73OxFu53Q62.jpg"
+    } else {
     checkoutBook(currentCataloggedBook);
+    }
 })
 
 //Function to checkout book
 function checkoutBook(book) {
   let id = book.id;
-  console.log(book)
+  // console.log(book)
     if (parseInt(book.copies) > 1) {
       fetch(`http://localhost:3000/books/${id}`, {
       method: 'PATCH',
@@ -162,9 +168,9 @@ function checkoutBook(book) {
     })
       .then(resp => resp.json())
       .then(data => {
-        firstBookToCatalog();
         bookBar.innerHTML = "";
         fetchBookBar();
+        firstBookToCatalog();
       })
     } 
 }
