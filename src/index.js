@@ -6,11 +6,9 @@ const bookBar = document.querySelector('#book-bar')
 const thankyouMessage = document.querySelector('#thankyou')
 const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
+
+//Keeps track of current book in the catalog
 let currentCataloggedBook;
-
-
-
-
 
 //Globally scoped catalog html elements
 const catalogBook = document.createElement("span");
@@ -26,11 +24,7 @@ catalog.appendChild(catalogBook);
 firstBookToCatalog();
 fetchBookBar();
 
-
- 
-
 //Changed the html form to have a submit function instead of a button, this way I can call addEventListener to the "searchBar", pass in event, prevent default, and pass the event to my searchBooks function. (that same search books function holds the fetch and the data).
-
 searchBar.addEventListener("submit", (e) => {
   e.preventDefault() 
   searchBooks(e)
@@ -38,38 +32,26 @@ searchBar.addEventListener("submit", (e) => {
 
 //SEARCH FUNCTION
 //Takes in our book paramater HOPEFULLY returns books that match the search
-
 function searchBooks(e){
 //create a FETCH to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
-.then(resp => resp.json())
-.then((books) => {
+  .then(resp => resp.json())
+  .then((books) => {
+    let searchInquiry = e.target["search-text"].value.toLowerCase()
 
-let searchInquiry = e.target["search-text"].value.toLowerCase()
-
-console.log(searchInquiry)
-
-
-  //The logic is taking a book, filtering and seeing if it matches.
-
-  let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
-
-  if (filteredBooks.length === 0){
-    alert("Sorry, but we currently do not have this book available.")
-  } else {
-
-    filteredBooks.forEach(book => {
-      //After filtering through the books and matching what is inputted into the searchInquiry, we then pass the book that is found to our addBookToCatalog function.
-        //console.log(book)
-
-        addBookToCatalog(book)
-      })
-    
+    console.log(searchInquiry)
+//The logic is taking a book, filtering and seeing if it matches.
+    let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
+    if (filteredBooks.length === 0){
+      alert("Sorry, but we currently do not have this book available.")
+    } else {
+      filteredBooks.forEach(book => {
+//After filtering through the books and matching what is inputted into the searchInquiry, we then pass the book that is found to our addBookToCatalog function.
+      addBookToCatalog(book)
+      })    
   }
     searchBar.reset()
-
 })}
-
 
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
@@ -118,7 +100,6 @@ function donatedBook(event) {
       })
 }
 
-
 //Book Bar code
 function fetchBookBar() {
   fetch("http://localhost:3000/books")
@@ -142,22 +123,13 @@ function renderBookBar(data) {
     })
 }
 
+//Listens for submit on checkout form and sends current catalogged book to checkout function
 checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const checkoutName = e.target.name.value;
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
     checkoutBook(currentCataloggedBook);
 })
-//Function to handle checkout button
-// function checkoutButtonHandler(book) {
-//     // console.log(book);
-//     checkoutForm.addEventListener('submit', (e) => { 
-//     e.preventDefault();
-//     const checkoutName = e.target.name.value;
-//     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
-//     checkoutBook(book);
-//     })
-// }
 
 //Function to checkout book
 function checkoutBook(book) {
@@ -195,7 +167,6 @@ function checkoutBook(book) {
       })
     } 
 }
-
 
 document.querySelector('#randy').addEventListener("mouseover", mouseOverRandy)
 document.querySelector('#randy').addEventListener("mouseout", mouseOutRandy)
