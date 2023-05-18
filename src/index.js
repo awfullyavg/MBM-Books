@@ -14,10 +14,10 @@ let currentCataloggedBook;
 const catalogBook = document.createElement("span");
 catalogBook.className = 'catalog-span'
 const catalogCopies = document.createElement("p");
-catalogBook.appendChild(catalogCopies);
 const catalogCover = document.createElement("img");
 catalogCover.className = "cover-img";
 catalogBook.appendChild(catalogCover);
+catalogBook.appendChild(catalogCopies)
 catalog.appendChild(catalogBook);
 
 //Calls fetch functions
