@@ -138,7 +138,13 @@ function renderBookBar(data) {
     images.className = 'bookbar-images'
     span.appendChild(images)
     document.getElementById('book-bar').appendChild(span)
-}
+
+    images.addEventListener('click', function() {
+      console.log(images)
+    })
+  }
+
+
 
 //Function to handle checkout button
 function checkoutButtonHandler(event, book) {
