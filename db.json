@@ -29,6 +29,13 @@
       "img_front": "https://m.media-amazon.com/images/I/71WSzS6zvCL._AC_UF1000,1000_QL80_.jpg"
     },
     {
+      "id": "4",
+      "title": "The Fault in Our Stars",
+      "author": "John Green",
+      "copies": "1",
+      "img_front": "https://m.media-amazon.com/images/I/817tHNcyAgL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
       "id": "5",
       "title": "Ready Player One",
       "author": "Ernest Cline",
