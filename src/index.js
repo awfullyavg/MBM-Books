@@ -3,35 +3,28 @@
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('#book-bar')
-const checkoutNowButton = document.querySelector('#checkoutNow-button')
 const thankyouMessage = document.querySelector('#thankyou')
 const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
 
-
-
-
-
+//Keeps track of current book in the catalog
+let currentCataloggedBook;
 
 //Globally scoped catalog html elements
 const catalogBook = document.createElement("span");
 catalogBook.className = 'catalog-span'
 const catalogCopies = document.createElement("p");
-catalogBook.appendChild(catalogCopies);
 const catalogCover = document.createElement("img");
 catalogCover.className = "cover-img";
 catalogBook.appendChild(catalogCover);
+catalogBook.appendChild(catalogCopies)
 catalog.appendChild(catalogBook);
 
 //Calls fetch functions
 firstBookToCatalog();
 fetchBookBar();
 
-
- 
-
 //Changed the html form to have a submit function instead of a button, this way I can call addEventListener to the "searchBar", pass in event, prevent default, and pass the event to my searchBooks function. (that same search books function holds the fetch and the data).
-
 searchBar.addEventListener("submit", (e) => {
   e.preventDefault() 
   searchBooks(e)
@@ -39,38 +32,26 @@ searchBar.addEventListener("submit", (e) => {
 
 //SEARCH FUNCTION
 //Takes in our book paramater HOPEFULLY returns books that match the search
-
 function searchBooks(e){
 //create a FETCH to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
-.then(resp => resp.json())
-.then((books) => {
+  .then(resp => resp.json())
+  .then((books) => {
+    let searchInquiry = e.target["search-text"].value.toLowerCase()
 
-let searchInquiry = e.target["search-text"].value.toLowerCase()
-
-console.log(searchInquiry)
-
-
-  //The logic is taking a book, filtering and seeing if it matches.
-
-  let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
-
-  if (filteredBooks.length === 0){
-    alert("Sorry, but we currently do not have this book available.")
-  } else {
-
-    filteredBooks.forEach(book => {
-      //After filtering through the books and matching what is inputted into the searchInquiry, we then pass the book that is found to our addBookToCatalog function.
-        //console.log(book)
-
-        addBookToCatalog(book)
-      })
-    
+    console.log(searchInquiry)
+//The logic is taking a book, filtering and seeing if it matches.
+    let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
+    if (filteredBooks.length === 0){
+      alert("Sorry, but we currently do not have this book available.")
+    } else {
+      filteredBooks.forEach(book => {
+//After filtering through the books and matching what is inputted into the searchInquiry, we then pass the book that is found to our addBookToCatalog function.
+      addBookToCatalog(book)
+      })    
   }
     searchBar.reset()
-
 })}
-
 
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
@@ -91,11 +72,7 @@ function firstBookToCatalog() {
 function addBookToCatalog(book) {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
-
-    checkoutNowButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      checkoutButtonHandler(event, book)
-    });
+    currentCataloggedBook = book;
 }
 
 //Adds donated book to db.json and book bar
@@ -123,7 +100,6 @@ function donatedBook(event) {
       })
 }
 
-
 //Book Bar code
 function fetchBookBar() {
   fetch("http://localhost:3000/books")
@@ -142,27 +118,24 @@ function renderBookBar(data) {
     
     images.addEventListener('click', function(){
       console.log(images)
-     catalogCover.src = images.src
-     catalogCopies.textContent = `Copies Available: ${data.copies}`
+      catalogCover.src = images.src
+      catalogCopies.textContent = `Copies Available: ${data.copies}`
+      currentCataloggedBook = data;
     })
 }
-  
 
-
-
-//Function to handle checkout button
-function checkoutButtonHandler(event, book) {
-    checkoutForm.addEventListener('submit', (e) => { 
+//Listens for submit on checkout form and sends current catalogged book to checkout function
+checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const checkoutName = e.target.name.value;
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
-    checkoutBook(book);
-    })
-}
+    checkoutBook(currentCataloggedBook);
+})
 
 //Function to checkout book
 function checkoutBook(book) {
-  const id = book.id;
+  let id = book.id;
+  console.log(book)
     if (parseInt(book.copies) > 1) {
       fetch(`http://localhost:3000/books/${id}`, {
       method: 'PATCH',
@@ -176,6 +149,7 @@ function checkoutBook(book) {
     })
         .then(resp => resp.json())
         .then(data => {
+          firstBookToCatalog();
           catalogCopies.textContent = `Copies Available: ${parseInt(book.copies) - 1}`
         })
     } else {
@@ -194,7 +168,6 @@ function checkoutBook(book) {
       })
     } 
 }
-
 
 document.querySelector('#randy').addEventListener("mouseover", mouseOverRandy)
 document.querySelector('#randy').addEventListener("mouseout", mouseOutRandy)
