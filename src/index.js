@@ -72,7 +72,7 @@ function firstBookToCatalog() {
 function addBookToCatalog(book) {
   if (bookBar.innerHTML === '') {
     catalogCopies.textContent = "No books remaining in catalog"
-    catalogCover.src = ""
+    catalogCover.src = "https://t3.ftcdn.net/jpg/00/49/82/62/360_F_49826222_9f2rGQlghv0jOYhAN7CCW73OxFu53Q62.jpg"
   } else {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
@@ -132,7 +132,7 @@ checkoutForm.addEventListener('submit', (e) => {
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
     if (bookBar.innerHTML === '') {
       catalogCopies.textContent = "No books remaining in catalog"
-      catalogCover.src = ""
+      catalogCover.src = "https://t3.ftcdn.net/jpg/00/49/82/62/360_F_49826222_9f2rGQlghv0jOYhAN7CCW73OxFu53Q62.jpg"
     } else {
     checkoutBook(currentCataloggedBook);
     }
