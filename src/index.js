@@ -3,11 +3,10 @@
 const donationForm = document.querySelector("#new-donation");
 const catalog = document.querySelector(".catalog");
 const bookBar = document.querySelector('#book-bar')
-const checkoutNowButton = document.querySelector('#checkoutNow-button')
 const thankyouMessage = document.querySelector('#thankyou')
 const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
-
+let currentCataloggedBook;
 
 
 
@@ -91,11 +90,7 @@ function firstBookToCatalog() {
 function addBookToCatalog(book) {
     catalogCopies.textContent = `Copies Available: ${book.copies}`;
     catalogCover.src = book.img_front;
-
-    checkoutNowButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      checkoutButtonHandler(event, book)
-    });
+    currentCataloggedBook = book;
 }
 
 //Adds donated book to db.json and book bar
@@ -146,23 +141,28 @@ function renderBookBar(data) {
      catalogCopies.textContent = `Copies Available: ${data.copies}`
     })
 }
-  
 
-
-
-//Function to handle checkout button
-function checkoutButtonHandler(event, book) {
-    checkoutForm.addEventListener('submit', (e) => { 
+checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const checkoutName = e.target.name.value;
     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
-    checkoutBook(book);
-    })
-}
+    checkoutBook(currentCataloggedBook);
+})
+//Function to handle checkout button
+// function checkoutButtonHandler(book) {
+//     // console.log(book);
+//     checkoutForm.addEventListener('submit', (e) => { 
+//     e.preventDefault();
+//     const checkoutName = e.target.name.value;
+//     thankyouMessage.textContent = `${checkoutName}, thank you for checking out a book!`;
+//     checkoutBook(book);
+//     })
+// }
 
 //Function to checkout book
 function checkoutBook(book) {
-  const id = book.id;
+  let id = book.id;
+  console.log(book)
     if (parseInt(book.copies) > 1) {
       fetch(`http://localhost:3000/books/${id}`, {
       method: 'PATCH',
@@ -176,6 +176,7 @@ function checkoutBook(book) {
     })
         .then(resp => resp.json())
         .then(data => {
+          firstBookToCatalog();
           catalogCopies.textContent = `Copies Available: ${parseInt(book.copies) - 1}`
         })
     } else {
