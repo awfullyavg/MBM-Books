@@ -15,6 +15,7 @@ const searchBar = document.querySelector("#search-input-form") //grab the search
 
 //Globally scoped catalog html elements
 const catalogBook = document.createElement("span");
+catalogBook.className = 'catalog-span'
 const catalogCopies = document.createElement("p");
 catalogBook.appendChild(catalogCopies);
 const catalogCover = document.createElement("img");
@@ -138,11 +139,14 @@ function renderBookBar(data) {
     images.className = 'bookbar-images'
     span.appendChild(images)
     document.getElementById('book-bar').appendChild(span)
-
-    images.addEventListener('click', function() {
+    
+    images.addEventListener('click', function(){
       console.log(images)
+     catalogCover.src = images.src
+     catalogCopies.textContent = `Copies Available: ${data.copies}`
     })
-  }
+}
+  
 
 
 
