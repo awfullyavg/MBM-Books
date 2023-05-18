@@ -86,12 +86,8 @@ function donatedBook(event) {
       body: JSON.stringify({
         "title": event.target.title.value,
         "author": event.target.author.value,
-        "pages": event.target.pages.value,
         "copies": event.target.copies.value,
         "img_front": event.target.frontImage.value,
-        "img_back": event.taget.backImage.value,
-        "genre": event.target.genre.value,
-        "series": event.target.series.value,
       })
     })
       .then(resp => resp.json())
