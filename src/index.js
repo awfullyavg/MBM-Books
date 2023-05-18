@@ -6,6 +6,7 @@ const bookBar = document.querySelector('#book-bar')
 const thankyouMessage = document.querySelector('#thankyou')
 const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
+const donatorList = document.querySelector(".donor-list")
 
 //Keeps track of current book in the catalog
 let currentCataloggedBook;
@@ -56,7 +57,26 @@ fetch("http://localhost:3000/books")
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    let donorNameH4= document.createElement("h4")
+    let donorCopyCount = document.createElement("ul")
+    let donorImage = document.createElement("img")
+    let numberOfCopies = event.target.copies.value
 
+    donorCopyCount.setAttribute("class", "donorClass")
+
+    donorNameH4.textContent = event.target.name.value
+    donorImage.src = event.target.donorImage.value
+
+    donorCopyCount.textContent = `This donor has donated ${numberOfCopies} books`
+
+    donatorList.appendChild(donorNameH4)
+    donatorList.appendChild(donorCopyCount)
+    donatorList.appendChild(donorImage)
+
+
+
+    //h4, UL, img
+    donatedBook(event)
 })
 
 //Gets data of first book and passes info to catalog
