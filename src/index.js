@@ -7,18 +7,8 @@ const checkoutNowButton = document.querySelector('#checkoutNow-button')
 const thankyouMessage = document.querySelector('#thankyou')
 const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
-const titleLines = document.createElement("ul")
-const authorLines = document.createElement("ul")
 
- //Step 2: Grab the div with an id of "search-results", from there we will populate using append.child() and add both our db.json books title and authors.
 
- const searchResults = document.querySelector("#search-results")
- //console.log(searchResults)
-
-//Step 4.5 using append.child() attach the titleLines and authorLines to the searchResults and add both our db.json books title and authors.
-  
-searchResults.appendChild(titleLines)
-searchResults.appendChild(authorLines)
 
 
 
@@ -39,7 +29,7 @@ fetchBookBar();
 
  
 
-//Step 5: We changed the html form to have a submit function instead of a button, this way I can call addEventListener to the "searchBar", pass in event, prevent default, and pass the event to my searchBooks function. (that same search books function holds the fetch and the data).
+//Changed the html form to have a submit function instead of a button, this way I can call addEventListener to the "searchBar", pass in event, prevent default, and pass the event to my searchBooks function. (that same search books function holds the fetch and the data).
 
 searchBar.addEventListener("submit", (e) => {
   e.preventDefault() 
@@ -48,8 +38,9 @@ searchBar.addEventListener("submit", (e) => {
 
 //SEARCH FUNCTION
 //Takes in our book paramater HOPEFULLY returns books that match the search
+
 function searchBooks(e){
-//Step 1: create a FETCH to obtain the data located in the db.json
+//create a FETCH to obtain the data located in the db.json
 fetch("http://localhost:3000/books")
 .then(resp => resp.json())
 .then((books) => {
@@ -59,7 +50,7 @@ let searchInquiry = e.target["search-text"].value.toLowerCase()
 console.log(searchInquiry)
 
 
-  //Step 6: The logic is taking a book, filtering and seeing if it matches.
+  //The logic is taking a book, filtering and seeing if it matches.
 
   let filteredBooks = books.filter((book) => searchInquiry == book.title.toLowerCase() || searchInquiry == book.author.toLowerCase())
 
@@ -68,10 +59,10 @@ console.log(searchInquiry)
   } else {
 
     filteredBooks.forEach(book => {
-      //Step 4: After making the <ul> elements,  I'd like to populate the list with both the TITLE of the books, and the AUTHOR of the books.
-  
-          titleLines.textContent = book.title
-          authorLines.textContent = book.author
+      //After filtering through the books and matching what is inputted into the searchInquiry, we then pass the book that is found to our addBookToCatalog function.
+        //console.log(book)
+
+        addBookToCatalog(book)
       })
     
   }
