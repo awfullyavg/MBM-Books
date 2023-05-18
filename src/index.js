@@ -118,8 +118,9 @@ function renderBookBar(data) {
     
     images.addEventListener('click', function(){
       console.log(images)
-     catalogCover.src = images.src
-     catalogCopies.textContent = `Copies Available: ${data.copies}`
+      catalogCover.src = images.src
+      catalogCopies.textContent = `Copies Available: ${data.copies}`
+      currentCataloggedBook = data;
     })
 }
 
