@@ -8,6 +8,10 @@ const checkoutForm = document.querySelector('#new-checkout');
 const searchBar = document.querySelector("#search-input-form") //grab the search for the searchBooks function
 const donatorList = document.querySelector(".donor-list")
 
+let donorNameH4= document.createElement("h4")
+let donorCopyCount = document.createElement("ul")   // this is creating new elements that we will populate when we submit our donator form
+let donorImage = document.createElement("img")
+
 //Keeps track of current book in the catalog
 let currentCataloggedBook;
 
@@ -57,17 +61,24 @@ fetch("http://localhost:3000/books")
 //Submit event listener for donation form
 donationForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    let donorNameH4= document.createElement("h4")
-    let donorCopyCount = document.createElement("ul")
-    let donorImage = document.createElement("img")
-    let numberOfCopies = event.target.copies.value
+
+    let numberOfCopies = event.target.copies.value // get number of copies from form
 
     donorCopyCount.setAttribute("class", "donorClass")
 
-    donorNameH4.textContent = event.target.name.value
-    donorImage.src = event.target.donorImage.value
+    donorNameH4.textContent = "⭐" + event.target.name.value //add name to donor form
+    donorImage.src = event.target.donorImage.value //adds img to donor form
 
     donorCopyCount.textContent = `This donor has donated ${numberOfCopies} books`
+
+    donorNameH4.className = "h4Donor"
+    donorCopyCount.className = "copiesDonated" //this area attaches classes to the respected variables
+    donorImage.className = "donorImages"
+
+    donorCopyCount.setAttribute("id", "newDonorCopies") // set ID to copies so we can reach copies
+
+    donorImage.setAttribute("id", "newDonorImage") //set an ID to target the image of the new donor
+
 
     donatorList.appendChild(donorNameH4)
     donatorList.appendChild(donorCopyCount)
@@ -222,3 +233,12 @@ function mouseOutMclovin () {
   document.getElementById('mclovin-copies').style.display = 'none';
 }
 
+donorImage.addEventListener("mouseover", mouseOverNewDonor) //select donorImage variable (it's already the SRC) + addEvent to it 
+donorImage.addEventListener("mouseout", mouseOutNewDonor)
+
+function mouseOverNewDonor () {
+  document.getElementById('newDonorCopies').style.display = 'block';
+}
+function mouseOutNewDonor () {
+  document.getElementById('newDonorCopies').style.display = 'none';
+}
