@@ -133,14 +133,29 @@ form h4 {
 }
 /*----------------------- End Book Bar CSS -----------------------*/
 .donor-board > div {
-    /* width: 400px;
+    /*width: 400px;
     height: relative;
-  border: 5px solid black;
-  background-color: lavender;
-  background-image: url(https://media.istockphoto.com/id/517699927/photo/corkboard-texture.jpg?s=612x612&w=0&k=20&c=gVkDdfbmPLkz029sAj4T_L7aGgCmCjfpXJ8caGVyZi8=) ;
+  /*border: 5px solid black;
+  /*background-color: lavender;
+  /*background-image: url(https://media.istockphoto.com/id/517699927/photo/corkboard-texture.jpg?s=612x612&w=0&k=20&c=gVkDdfbmPLkz029sAj4T_L7aGgCmCjfpXJ8caGVyZi8=) ;
   /* padding: 50px; */
-  /* margin: auto; */ 
-    flex: 1;
+    flex: auto; 
     background-image: url(https://media.istockphoto.com/id/517699927/photo/corkboard-texture.jpg?s=612x612&w=0&k=20&c=gVkDdfbmPLkz029sAj4T_L7aGgCmCjfpXJ8caGVyZi8=);
     border: 5px solid black;
+}
+
+/*----------------------- Moving the popup donor to classes and linking here -----------------------*/
+.h4Donor {
+    background-color: lavender
+}
+
+.copiesDonated{
+    display: none;
+    background-color: white;
+
+}
+
+.donorImages{
+    width: 100px;
+    height: 100px;
 }
